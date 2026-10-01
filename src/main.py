@@ -20,10 +20,13 @@ if __name__ == "__main__":
         print(f"Flyer generado: {ruta}")
 
         if "EMAIL_USER" in os.environ and "EMAIL_APP_PASSWORD" in os.environ:
+            destino = os.environ.get("EMAIL_TO", os.environ["EMAIL_USER"])
+            print("Enviando a:", destino)
             enviar_mail(
-                "Tu semana en música",
+                "¿Querés conocer tus canciones más escuchadas de la semana? 🎧",
                 f"Esta semana escuchaste {total_semana} canciones. "
-                f"La más escuchada fue {filas[0][0]} de {filas[0][1]}.",
+                f"La que más repetiste fue {filas[0][0]} de {filas[0][1]}. "
+                f"Mirá tu top 5 acá abajo.",
                 ruta,
             )
             print("Mail enviado.")
